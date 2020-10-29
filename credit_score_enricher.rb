@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bunny'
 require 'json'
 require_relative 'recipient_list'
@@ -14,7 +16,7 @@ connection.start
 channel = connection.create_channel
 
 loan_request_queue = channel.queue('loanRequestQueue')
-bank_queues = BANKS_DB.map do |bank_name|
+BANKS_DB.map do |bank_name|
   channel.queue("#{bank_name}Queue")
 end
 

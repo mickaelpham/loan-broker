@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 BANKS_DB = %w[
   bank1
   bank2
