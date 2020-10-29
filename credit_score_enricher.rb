@@ -34,10 +34,13 @@ begin
     puts " [x] Received #{payload}"
 
     # enrich with the credit score
-    payload[:credit_score] = credit_score(payload[:credit_score])
+    payload[:credit_score] = credit_score(payload[:social_security_number])
 
     # get the bank recipients list
     banks = bank_recipients(payload[:credit_score])
+
+    # add the expected banks response to the message
+    payload[:expected_bank_replies] = banks.size
 
     # fan out to all the banks on the list
     banks.each do |bank_name|

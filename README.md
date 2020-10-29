@@ -10,6 +10,15 @@ RabbitMQ docker image
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```
 
+Redis (for the aggregator)
+
+key = customer SSN
+
+on each message in `bankReplyQueue` we can push to Redis using `LPUSH` until
+`LLEN` matches the `expected_bank_replies`
+
+Then we publishes the response to the Translator
+
 ## Queues list
 
 - `loanRequestQueue`
