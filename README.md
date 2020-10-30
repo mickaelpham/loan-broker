@@ -10,6 +10,12 @@ RabbitMQ docker image
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```
 
+Foreman
+
+```
+gem install foreman
+```
+
 Redis (for the aggregator)
 
 key = customer SSN
@@ -97,3 +103,10 @@ expected loan: Bank3 at 2.5% (while bank2 also returned an accepted loan at 3%)
 - https://github.com/ddollar/foreman
 
 Create a `Procfile` to start all our Ruby scripts
+
+## Running the app
+
+Use foreman to run all services
+```
+foreman start
+```
