@@ -1,6 +1,9 @@
 # Loan Broker
 
-High level schema is page 402
+High level schema is page 402 of
+[Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/).
+
+![composed messaging with queues](./composed-messaging.gif)
 
 ## Dependencies
 

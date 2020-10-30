@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  broker:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  storage:
+    image: redis:6-alpine
+
+  credit_bureau:
+    build: ./credit_bureau
+    depends_on:
+      - broker
