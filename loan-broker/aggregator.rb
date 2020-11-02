@@ -24,7 +24,7 @@ Thread.new do
                .lrange(payload[:correlation_id], 0, redis_last_element_index)
                .map { |offer| JSON.parse(offer, symbolize_names: true) }
 
-      puts " [<] All offers received, sending to translator"
+      puts ' [<] All offers received, sending to translator'
       Translator.new(offers, channel).call
     end
   end
