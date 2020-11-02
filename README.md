@@ -1,3 +1,5 @@
+![Ruby](https://github.com/mickaelpham/loan-broker/workflows/Ruby/badge.svg)
+
 # Loan Broker
 
 Implementing a Loan Broker application using Message Queues (MQ).
