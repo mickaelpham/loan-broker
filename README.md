@@ -25,7 +25,7 @@ Use foreman to run all services
 
 Finally, send a test message:
 
-    ruby loan_test_message.rb
+    ruby loan-test-client/generate_test_message.rb
 
 ### Not yet available
 
