@@ -1,20 +1,33 @@
 # Loan Broker
 
-High level schema is page 402
+Implementing a Loan Broker application using Message Queues (MQ).
 
-## Dependencies
+![implementation using queues](./asynchronous-using-mq.gif)
 
-RabbitMQ docker image
+Credits:
+[Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingMSMQ.html)
+
+## Running the app
+
+First, start a RabbitMQ broker in a terminal:
 
 ```
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```
 
-Foreman
+Install the remaining dependencies:
 
-```
-gem install foreman
-```
+    bundle install
+
+Use foreman to run all services
+
+    foreman start
+
+Finally, send a test message:
+
+    ruby loan_test_message.rb
+
+### Not yet available
 
 Redis (for the aggregator)
 
@@ -97,16 +110,3 @@ input: Customer John Doe\
 amount loan: \$5k\
 credit score: 730\
 expected loan: Bank3 at 2.5% (while bank2 also returned an accepted loan at 3%)
-
-## Nice to have / roadmap
-
-- https://github.com/ddollar/foreman
-
-Create a `Procfile` to start all our Ruby scripts
-
-## Running the app
-
-Use foreman to run all services
-```
-foreman start
-```
