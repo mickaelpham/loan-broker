@@ -6,6 +6,7 @@ $stdout.sync = true
 require 'bunny'
 require 'json'
 require 'ulid'
+require 'redis'
 
 # Ingress/Egress queues for loan broker
 LOAN_REQUEST = 'loanRequestQueue'
@@ -23,6 +24,8 @@ BANK_REPLY = 'bankReplyQueue'
 $connection = Bunny.new
 $connection.start
 
+require_relative 'aggregator'
+require_relative 'translator'
 require_relative 'content_enricher'
 require_relative 'recipient_list'
 
