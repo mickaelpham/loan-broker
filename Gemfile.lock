@@ -5,6 +5,7 @@ GEM
     ast (2.4.1)
     bunny (2.17.0)
       amq-protocol (~> 2.3, >= 2.3.1)
+    foreman (0.87.2)
     parallel (1.19.2)
     parser (2.7.2.0)
       ast (~> 2.4.1)
@@ -23,6 +24,7 @@ GEM
     rubocop-ast (1.1.0)
       parser (>= 2.7.1.5)
     ruby-progressbar (1.10.1)
+    ulid (1.2.0)
     unicode-display_width (1.7.0)
 
 PLATFORMS
@@ -30,7 +32,9 @@ PLATFORMS
 
 DEPENDENCIES
   bunny
+  foreman
   rubocop
+  ulid
 
 RUBY VERSION
    ruby 2.7.2p137
