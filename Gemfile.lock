@@ -25,6 +25,7 @@ GEM
     rubocop-ast (1.1.0)
       parser (>= 2.7.1.5)
     ruby-progressbar (1.10.1)
+    sysrandom (1.0.5)
     ulid (1.2.0)
     unicode-display_width (1.7.0)
 
@@ -36,6 +37,7 @@ DEPENDENCIES
   foreman
   redis
   rubocop
+  sysrandom
   ulid
 
 RUBY VERSION
