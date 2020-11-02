@@ -25,7 +25,7 @@ Thread.new do
                .map { |offer| JSON.parse(offer, symbolize_names: true) }
 
       puts " [<] All offers received, sending to translator"
-      Translator.new(offers).call
+      Translator.new(offers, channel).call
     end
   end
 end
