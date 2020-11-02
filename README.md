@@ -9,23 +9,34 @@ Credits:
 
 ## Running the app
 
-First, start a RabbitMQ broker in a terminal:
+First, ensure you meet the prerequisites:
+
+- [Ruby Environment](http://www.ruby-lang.org/en/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+Clone the repository:
 
 ```
-docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+git clone https://github.com/mickaelpham/loan-broker.git
+cd loan-broker
 ```
 
-Install the remaining dependencies:
+Install the Ruby dependencies:
 
     bundle install
 
-Use foreman to run all services
+Starts the background services:
+
+    docker-compose up
+
+Use foreman to run all applications:
 
     foreman start
 
 Finally, send a test message:
 
-    ruby loan-test-client/generate_test_message.rb
+    bundle exec ruby loan-test-client/generate_test_message.rb
 
 ### Not yet available
 
@@ -91,11 +102,14 @@ Then we publishes the response to the Translator
 
 ### Component: Verify
 
+> Note: these scenarios are not validated against the current code
+
 **Scenario 1**
 
 input: Customer Jane Doe\
 amount loan: \$10k\
-credit score: 820 \expected loan: Bank1 with 2% interest rate
+credit score: 820\
+expected loan: Bank1 with 2% interest rate
 
 **Scenario 2**
 
