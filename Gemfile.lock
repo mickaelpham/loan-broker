@@ -10,6 +10,7 @@ GEM
     parser (2.7.2.0)
       ast (~> 2.4.1)
     rainbow (3.0.0)
+    redis (4.2.2)
     regexp_parser (1.8.2)
     rexml (3.2.4)
     rubocop (1.1.0)
@@ -33,6 +34,7 @@ PLATFORMS
 DEPENDENCIES
   bunny
   foreman
+  redis
   rubocop
   ulid
 
