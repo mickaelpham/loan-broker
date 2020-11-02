@@ -38,30 +38,6 @@ Finally, send a test message:
 
     bundle exec ruby loan-test-client/generate_test_message.rb
 
-### Not yet available
-
-Redis (for the aggregator)
-
-key = customer SSN
-
-on each message in `bankReplyQueue` we can push to Redis using `LPUSH` until
-`LLEN` matches the `expected_bank_replies`
-
-Then we publishes the response to the Translator
-
-## Queues list
-
-- `loanRequestQueue`
-- `creditRequestQueue`
-- `creditReplyQueue`
-- `bankNQueue` (n is 1..6)
-- `bankReplyQueue`
-- `loanReplyQueue`
-
-### Error/Invalid Queue
-
-- `invalidLoanRequestQueue`
-
 ## Components
 
 ### Component: Generate Test Loan Request Message
@@ -89,6 +65,7 @@ Then we publishes the response to the Translator
 
 ### Component: Aggregator
 
+- Uses Redis `lpush` and `lrange` operations (stateful component)
 - For loan application with ID `12345`
 - Wait for _n_ responses from the bank (where _n_ is either a min. quantity of
   replies or the number of banks for the recipient list component)
