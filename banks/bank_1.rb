@@ -23,7 +23,7 @@ begin
     puts " [>] Received #{payload}"
 
     # Bank 1 always accept loans and always returns a 4% interest rate
-    response = payload.merge(interest_rate: 0.04, approved: true)
+    response = payload.merge(interest_rate: 0.04, approved: true, bank: 'Bank 1')
 
     puts " [<] Replied #{response}"
     channel.default_exchange.publish(response.to_json, routing_key: EGRESS)

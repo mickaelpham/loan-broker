@@ -24,7 +24,7 @@ begin
 
     # Bank 2 always accept loans, but returns different interest rates
     interest_rate = payload[:amount_loan] < 10_000 ? 0.06 : 0.03
-    response = payload.merge(interest_rate: interest_rate, approved: true)
+    response = payload.merge(interest_rate: interest_rate, approved: true, bank: 'Bank 2')
 
     puts " [<] Replied #{response}"
     channel.default_exchange.publish(response.to_json, routing_key: EGRESS)
