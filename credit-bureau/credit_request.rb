@@ -12,10 +12,10 @@ EGRESS_QUEUE = 'creditReplyQueue'
 # In a real world, we would connect to a database of sort
 # but this will do as an example
 CREDIT_SCORES_DB = {
-  '123456789' => 824,
-  '234567891' => 542,
-  '345678912' => 738,
-  '456789123' => 434
+  '123 45 6789' => 824,
+  '234 56 7891' => 542,
+  '345 67 8912' => 738,
+  '456 78 9123' => 434
 }.freeze
 
 # Connect to RabbitMQ
@@ -28,13 +28,13 @@ channel = connection.create_channel
 ingress = channel.queue(INGRESS_QUEUE)
 
 begin
-  puts ' [*] Waiting for credit requests. To exit press CTRL+C'
+  puts ' [*] Waiting for credit requests'
 
   ingress.subscribe(block: true) do |_delivery_info, _properties, body|
     payload = JSON.parse(body, symbolize_names: true)
     puts " [>] Received #{payload}"
 
-    credit_score = CREDIT_SCORES_DB.fetch(payload[:ssn], 0)
+    credit_score = CREDIT_SCORES_DB.fetch(payload[:social_security_number], 0)
     response = payload.merge(credit_score: credit_score)
 
     puts " [<] Replied with #{response}"

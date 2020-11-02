@@ -12,11 +12,14 @@ Thread.new do
   # Create the queue to subscribe to (note: this operation is idempotent, so it won't create
   # the queue if it already exists)
   loan_request = channel.queue(LOAN_REQUEST)
-  puts ' [*] Waiting for loan requests. To exit press CTRL+C'
+  puts ' [*] Waiting for loan requests'
 
   loan_request.subscribe(block: true) do |_delivery_info, _properties, body|
     payload = JSON.parse(body, symbolize_names: true)
     puts " [>] Loan Request: Received #{payload}"
+
+    # Add a correlation ID for further processing this message in the aggregator
+    payload[:correlation_id] = ULID.generate
 
     puts ' [<] Loan Request: Sending a Credit Request'
     channel.default_exchange.publish(payload.to_json, routing_key: CREDIT_REQUEST)
@@ -29,7 +32,7 @@ Thread.new do
   channel = $connection.create_channel
 
   credit_reply = channel.queue(CREDIT_REPLY)
-  puts ' [*] Waiting for credit replies. To exit press CTRL+C'
+  puts ' [*] Waiting for credit replies'
 
   credit_reply.subscribe(block: true) do |_delivery_info, _properties, body|
     payload = JSON.parse(body, symbolize_names: true)
@@ -37,6 +40,9 @@ Thread.new do
 
     # Get the recipient list and publish a request on each bank on the list
     banks = bank_recipients(payload[:credit_score])
+
+    # Add the number of expected replies before sending the loan reply response
+    payload[:expected_bank_replies] = banks.size
 
     banks.each do |bank|
       bank_queue = "#{bank}Queue"

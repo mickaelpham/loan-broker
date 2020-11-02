@@ -5,6 +5,7 @@ $stdout.sync = true
 
 require 'bunny'
 require 'json'
+require 'ulid'
 
 # Ingress/Egress queues for loan broker
 LOAN_REQUEST = 'loanRequestQueue'
