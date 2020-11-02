@@ -18,6 +18,7 @@ begin
   loan_reply.subscribe(block: true) do |_delivery_info, _properties, body|
     payload = JSON.parse(body, symbolize_names: true)
     puts " [>] Received #{payload}"
+    puts ' [>] SUCCESS! (the end)'
   end
 rescue Interrupt => _e
   connection.close
