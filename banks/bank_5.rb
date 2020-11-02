@@ -23,7 +23,7 @@ begin
     puts " [>] Received #{payload}"
 
     # Bank 5 is bankrupted and never approves a loan
-    response = payload.merge(approved: false)
+    response = payload.merge(approved: false, name: 'Bank 5')
 
     puts " [<] Replied #{response}"
     channel.default_exchange.publish(response.to_json, routing_key: EGRESS)

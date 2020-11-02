@@ -25,7 +25,7 @@ begin
     # Bank 3 always returns a 1% interest rate but does not accept amounts
     # greater than or equal to $500
     approved = payload[:loan_amount] <= 500
-    response = payload.merge(interest_rate: 0.01, approved: approved)
+    response = payload.merge(interest_rate: 0.01, approved: approved, bank: 'Bank 3')
 
     puts " [<] Replied #{response}"
     channel.default_exchange.publish(response.to_json, routing_key: EGRESS)

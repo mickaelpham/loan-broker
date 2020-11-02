@@ -5,3 +5,4 @@ bank-2: bundle exec ruby banks/bank_2.rb
 bank-3: bundle exec ruby banks/bank_3.rb
 bank-4: bundle exec ruby banks/bank_4.rb
 bank-5: bundle exec ruby banks/bank_5.rb
+verify: bundle exec ruby loan-test-client/verify.rb
